@@ -44,3 +44,10 @@ app.use(passport.session());
 passport.use(new passportLocalStartegy(user.authenticate()))
 passport.serializeUser(user.serializeUser());
 passport.deserializeUser(user.deserializeUser());
+app.use((req,resp,next)=>{
+    resp.locals.sucess = req.flash("sucess");
+    resp.locals.error = req.flash("error");
+    resp.locals.currUser = req.user;
+    resp.locals.redirectUrl= req.session.redirectUrl;
+    next();
+})
