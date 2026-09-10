@@ -15,3 +15,7 @@ const {signupform,signup,signinform,signin,logout}  = require("./controllers/use
 const userRoutes = require("./routes/userRoutes.js");
 const multer = require("multer");
 const mongoStore = require("connect-mongo");
+mongoose.connect(dbURL,
+).then(()=>{
+    console.log("Connection Established To An Wonderlust Database");
+});
