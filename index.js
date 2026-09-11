@@ -69,3 +69,7 @@ app.use("/",userRoutes);
 app.use((req,resp,next)=>{
     next(new ExpressError("Page Not Found!",403));
 });
+app.use((err,req,resp,next)=>{
+let {message="Something Went Wrong!",statusCode=403} = err;
+resp.status(statusCode).render("./Listings/error.ejs",{err});
+});
