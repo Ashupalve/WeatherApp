@@ -51,3 +51,11 @@ app.use((req,resp,next)=>{
     resp.locals.redirectUrl= req.session.redirectUrl;
     next();
 })
+app.use(express.urlencoded({extended:true}));
+app.use(methodoverride("_method"));
+app.use(express.static(path.join(__dirname, "public")));
+app.set("view engine","ejs");
+app.engine("ejs",ejsmate);
+app.listen(3000,()=>{
+    console.log("Server is Starting At An Port No 3000");
+});
