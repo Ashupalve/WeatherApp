@@ -73,3 +73,18 @@ app.use((err,req,resp,next)=>{
 let {message="Something Went Wrong!",statusCode=403} = err;
 resp.status(statusCode).render("./Listings/error.ejs",{err});
 });
+
+// Middleware To Route An Listing Model Requests
+app.use("/Listings",listingRoutes);
+// Middle Ware To routs An review Model Requests
+app.use("/listings/:listing_id",reviesRoutes);
+// Route To Render An Form To Get An New User Infro
+app.use("/",userRoutes);
+// Route for if An Request is Not Matched With An All The Following Routes
+app.use((req,resp,next)=>{
+    next(new ExpressError("Page Not Found!",403));
+});
+app.use((err,req,resp,next)=>{
+let {message="Something Went Wrong!",statusCode=403} = err;
+resp.status(statusCode).render("./Listings/error.ejs",{err});
+});
